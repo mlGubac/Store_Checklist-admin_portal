@@ -1,3 +1,5 @@
+
+import ModalContextProvider from './context/ModalContext';
 import './css/Styles.scss';
 import RouterModule from './RouterModule';
 import {
@@ -6,15 +8,18 @@ import {
   useQueryClient,
   QueryClient,
   QueryClientProvider,
-} from "@tanstack/react-query";
+} from "react-query";
 
 const queryClient = new QueryClient()
 
 function App() {
   return (
     <div>
+
      <QueryClientProvider client={queryClient}>
-        <RouterModule />
+        <ModalContextProvider>
+          <RouterModule />
+        </ModalContextProvider>
      </QueryClientProvider>
     </div>
   );

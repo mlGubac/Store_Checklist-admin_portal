@@ -1,22 +1,154 @@
+::selection {
+  background: #2d2f36;
+}
+::-webkit-selection {
+  background: #2d2f36;
+}
+::-moz-selection {
+  background: #2d2f36;
+}
+body {
+  background: white;
+  font-family: "Inter UI", sans-serif;
+  // margin: 0;
+  // padding: 20px;
+}
+
+.login {
+  background: #e8d9ba;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 40px);
+  position: absolute;
+  place-content: center;
+  width: calc(100% - 40px);
+  overflow-y: auto;
+  padding: 20px;
+}
+@media (max-width: 767px) {
+  .login {
+    height: auto;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+  }
+}
+
+.login-box {
+  display: flex;
+  height: 320px;
+  margin: 0 auto;
+  width: 640px;
+}
+@media (max-width: 767px) {
+  .login-box {
+    flex-direction: column;
+    height: 630px;
+    width: 320px;
+  }
+}
+.login-left {
+  background: white;
+  height: calc(100% - 40px);
+  top: 20px;
+  position: relative;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+.login-left img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.login-left h2 {
+  font-weight: 900;
+  color: #b4b0a9;
+}
+.login-left h2 span {
+  color: #b59657;
+}
+@media (max-width: 767px) {
+  .login-left {
+    height: 100%;
+    left: 20px;
+    width: calc(100% - 40px);
+    max-height: 270px;
+  }
+}
+
+.login-right {
+  background: #cddcf7;
+  box-shadow: 0px 0px 40px 16px rgba(0, 0, 0, 0.22);
+  color: #f1f1f2;
+  position: relative;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+@media (max-width: 767px) {
+  .login-right {
+    flex-shrink: 0;
+    height: 100%;
+    width: 100%;
+    max-height: 350px;
+  }
+}
+
+.login-right-textbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-right-textbox h1 {
+  color: #b59657;
+}
+
+.input-username {
+  width: 70%;
+  padding: 10px;
+}
+
+.input-password {
+  width: 70%;
+  padding: 10px;
+}
+.login-right-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 25px;
+}
+
+//Main Page CSS
 .home {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   min-height: 100vh;
 
+  // Main Sidenav
   .sidenav {
-    // border: 1px solid red;
-    // background-color: #34b249;
-    width:20%;
+    background-color: #cddcf7;
+    width: 20%;
     min-height: 99.5vh;
     font-size: 30;
-    transition: 0.5s width ease-in;
+    // transition: 0.3s width ease-in;
+    font-family: "Roboto";
   }
 
-  .sidenav-active{
+  .sidenav-active {
     width: 0;
+    background-color: #cddcf7;
     overflow-x: hidden;
-    transition: 0.5s width ease-out;
+    // transition: 0.3s width ease-out;
   }
 
   .sidenav-img {
@@ -26,10 +158,20 @@
     justify-content: center;
   }
 
+  .sidenav-img img {
+    // border: 1px solid red;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
   .sidenav-logo {
-    // border: 1px solid blue;
-    width: 60%;
+    width: 50%;
     height: 50%;
+  }
+
+  // User Create
+  .user-create-sidenav-main {
+    display: none;
   }
 
   .topnavAndContent {
@@ -39,57 +181,116 @@
     width: 100%;
 
     .topnav {
-      // border: 1px solid green;
+      // border: 1px solid red;
+      height: 1rem;
+      max-height: 1rem;
+      background-color: #e8d9ba;
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      height: 7vh;
-      width: 100%;
-      background-color: #34b249;
-  
-      .topnav-menu-icon {
-        margin-left: 2vh;
-      }
-  
-      .topnav-logout {
-        margin-right: 2vh;
-      }
- 
+      justify-content: space-between;
+      padding: 20px;
+      position: sticky;
     }
 
     .user-container {
       // border: 1px solid blueviolet;
+      background: #d4d6d9;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      margin: 3vh;
-      height: 80vh;
+      // margin: 3vh;
+      padding: 20px;
+      height: 100%;
 
       .user-buttoninput {
         // border: 1px solid red;
         display: flex;
         flex-direction: row;
-        align-items: center;
         justify-content: space-between;
-        margin: 1.5vh;
-        height: 10vh;
+        margin-bottom: 16px;
+
+        .user-buttoninput-left {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .user-buttoninput-right {
+          display: flex;
+          align-items: center;
+        }
       }
 
       .user-table {
         // border: 1px solid blue;
         margin: 1.5vh;
-        height: 60vh;
+        height: 65vh;
       }
     }
   }
 
-  @media only screen and (max-width: 600px) {
+  @media screen and (max-width: 1000px) {
     .sidenav {
-      width: 0;
-      overflow-x: hidden;
+      // width: 0;
+      overflow: hidden;
+    }
+    .topnavAndContent {
+      width: 100%;
+    }
+
+    .topnav {
+      position: sticky;
+    }
+
+    .user-buttoninput {
+      flex-wrap: wrap;
+      width: 100%;
+
+      .user-buttoninput-left {
+        width: 100%;
+        // display: flex;
+        // background-color: #34b249;
+        // flex-wrap: wrap;
+
+        .user-buttoninput-left-select {
+          width: 100%;
+          margin-bottom: 10px;
+
+          padding: unset;
+        }
+        .user-buttoninput-left-textfield {
+          width: 100%;
+          margin-bottom: 10px;
+          padding: unset;
+        }
+        .user-buttoninput-left-button {
+          width: 100%;
+          margin-bottom: 10px;
+          padding: unset;
+        }
+      }
+
+      .user-buttoninput-right {
+        width: 100%;
+        justify-content: flex-end;
+        flex-direction: row;
+      }
     }
   }
+}
 
+.listItemSide {
+  &.MuiListItemText-root {
+    .MuiTypography-root {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.listItemButton {
+  &.MuiListItemIcon-root {
+    .MuiSvgIcon-root {
+      font-size: 1rem;
+    }
+  }
 }

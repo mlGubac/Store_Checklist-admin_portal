@@ -1,61 +1,101 @@
-import React, { useState, createContext, useContext } from 'react'
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonIcon from '@mui/icons-material/Person';
-import FolderIcon from '@mui/icons-material/Folder';
+import React, { useState, createContext, useContext } from "react";
+import "../../css/Styles.scss";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PersonIcon from "@mui/icons-material/Person";
+import FolderIcon from "@mui/icons-material/Folder";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import SchemaIcon from "@mui/icons-material/Schema";
 
-import logo from './../../assets/expo-bg1.png';
+import logo from "./../../assets/SC Logo.png";
 
-import { DrawerContext } from '../../context/DrawerContext';
+import { DrawerContext } from "../../context/DrawerContext";
+import { ListItemIcon, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Sidenav = () => {
+  const { isOpen } = useContext(DrawerContext);
 
-  const {isOpen} = useContext(DrawerContext)
-  console.log(isOpen)
+  const navigate = useNavigate();
+
+  const role = localStorage.getItem("access");
 
   return (
     <>
-      <div className={isOpen ? 'sidenav-active' : 'sidenav'}>
-        <div className='sidenav-img'>
-          <img src={logo} alt="Logo" className='sidenav-logo'/>
+      <div className={isOpen ? "sidenav-active" : "sidenav"}>
+        <div className="sidenav-img">
+          <img src={logo} alt="Logo" className="sidenav-logo" />
         </div>
         <div>
-          <Divider />  
+          <Divider />
           <List>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <IconButton  size="large">
-                  <DashboardIcon/>
-                </IconButton>
-                <ListItemText primary="Dashboards" />
+            {role?.includes("Dashboard") && (
+              <ListItem>
+                <ListItemButton onClick={() => navigate("/")}>
+                  <ListItemIcon className="listItemButton">
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText className="listItemSide">
+                    Dashboard
+                  </ListItemText>
+                </ListItemButton>
+              </ListItem>
+            )}
+
+            {role?.includes("User-Management") && (
+              <ListItem>
+                <ListItemButton onClick={() => navigate("user")}>
+                  <ListItemIcon className="listItemButton">
+                    <PersonIcon />
+                  </ListItemIcon>
+                  <ListItemText className="listItemSide">
+                    User Account
+                  </ListItemText>
+                </ListItemButton>
+              </ListItem>
+            )}
+
+            {role?.includes("Role-Management") && (
+              <ListItem>
+                <ListItemButton onClick={() => navigate("role")}>
+                  <ListItemIcon className="listItemButton">
+                    <ManageAccountsIcon />
+                  </ListItemIcon>
+                  <ListItemText className="listItemSide">
+                    Role Management
+                  </ListItemText>
+                </ListItemButton>
+              </ListItem>
+            )}
+
+            <ListItem>
+              <ListItemButton onClick={() => navigate("department")}>
+                <ListItemIcon className="listItemButton">
+                  <SchemaIcon />
+                </ListItemIcon>
+                <ListItemText className="listItemSide">Department</ListItemText>
               </ListItemButton>
             </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <IconButton size="large" >
-                  <PersonIcon/>
-                </IconButton>
-                <ListItemText primary="User" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <IconButton size="large">
-                  <FolderIcon/>
-                </IconButton>
-                <ListItemText primary="Reports" />
+
+            <ListItem>
+              <ListItemButton onClick={() => navigate("location")}>
+                <ListItemIcon className="listItemButton">
+                  <LocationOnIcon />
+                </ListItemIcon>
+                <ListItemText className="listItemSide">Location</ListItemText>
               </ListItemButton>
             </ListItem>
           </List>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Sidenav
+export default Sidenav;
